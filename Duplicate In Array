@@ -1,0 +1,48 @@
+/*
+You are given an array ‘ARR’ of size ‘N’ containing each number between 1 and ‘N’ - 1 at least once. There is a single integer value that is present in the array twice.
+Your task is to find the duplicate integer value present in the array.
+*/
+
+import java.util.*;
+
+public class Solution {
+
+	public static int findDuplicate(ArrayList<Integer> arr) {
+
+		//    Write your code here.
+        Map<Integer,Integer> map = new HashMap<>();
+        for(int i : arr) {
+            map.put(i, map.getOrDefault(i,0) + 1);
+        }
+        
+        for(Map.Entry<Integer,Integer> val : map.entrySet()) {
+            if(val.getValue()>1) {
+                return val.getKey();
+            }
+        }
+        return 0;
+	}
+}
+
+/* Approach 2 for constant space*/
+
+int findDuplicate(vector<int> &arr) 
+{
+    int ans = 0;
+
+   for(int i = 0 ; i<arr.size();i++){
+
+         ans = ans ^arr[i];
+
+   }
+	
+   for(int i = 1;i<arr.size();i++) {
+
+         ans= ans ^ i;
+
+   }
+
+  return ans;
+	
+}
+
